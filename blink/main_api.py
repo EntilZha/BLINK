@@ -514,9 +514,10 @@ class EntityLinker:
     
     def create_app(self):
         app = FastAPI()
+
         @app.get("/api/")
-        async def entity_link():
-            pass
+        async def entity_link(text: str):
+            return self.link_text(text)
         
         return app
 
