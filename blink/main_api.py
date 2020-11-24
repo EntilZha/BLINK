@@ -427,7 +427,7 @@ class EntityLinker:
                 {
                     "idx": idx,
                     "sample": sample,
-                    "entity_id": e_id,
+                    "entity_id": e_id.item(),
                     "entity_title": e_title,
                     "entity_text": e_text,
                     "url": e_url,
@@ -482,7 +482,7 @@ class EntityLinker:
                 {
                     "idx": idx,
                     "sample": sample,
-                    "entity_id": e_id,
+                    "entity_id": e_id.item(),
                     "entity_title": e_title,
                     "entity_text": e_text,
                     "url": e_url,
