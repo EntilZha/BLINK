@@ -9,6 +9,7 @@ import json
 
 import numpy as np
 import torch
+import uvicorn
 from colorama import init
 from fastapi import FastAPI
 from termcolor import colored
@@ -615,8 +616,17 @@ if __name__ == "__main__":
         help="path to load indexer",
     )
 
+    parser.add_argument('--mode', type=str, default="interactive")
+
     args = parser.parse_args()
 
     logger = utils.get_logger(args.output_path)
 
-    EntityLinker(args, logger).run()
+    linker = EntityLinker(args, logger)
+    if args.mode == "interactive":
+        linker.run()
+    elif args.mode == "api":
+        app = linker.create_app()
+        uvicorn.run(app, host="0.0.0.0", port=3030)
+    else:
+        raise ValueError("Invalid mode")
